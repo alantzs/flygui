@@ -9,169 +9,91 @@
         body {
             background: radial-gradient(circle at center, #1e0b35 0%, #07030a 100%);
             color: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 50px 20px;
+            padding: 40px 20px;
         }
-
-        h1 {
-            font-family: 'Dela Gothic One', cursive;
-            font-size: clamp(32px, 8vw, 48px);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-size: 10px;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 50px;
-            font-weight: 800;
-        }
-
+        h1 { font-family: 'Dela Gothic One', cursive; font-size: clamp(30px, 8vw, 50px); margin: 0; color: #fff; }
+        .subtitle { font-size: 10px; color: #777; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; }
+        
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
+            gap: 20px;
+            max-width: 900px;
             width: 100%;
         }
-
+        
         .card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 30px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(160, 32, 240, 0.5);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card h3 {
-            font-family: 'Dela Gothic One', cursive;
-            font-size: 20px;
-            margin: 0 0 10px 0;
-            color: #fff;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #888;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
+        .card:hover { transform: translateY(-5px); border-color: #a020f0; background: rgba(255, 255, 255, 0.06); }
+        
+        .card h3 { font-family: 'Dela Gothic One', cursive; margin: 0 0 10px 0; font-size: 18px; }
+        .card p { font-size: 14px; color: #aaa; margin-bottom: 20px; line-height: 1.5; }
+        
         .copy-btn {
             width: 100%;
-            background: #ffffff;
+            background: #fff;
             color: #000;
             border: none;
-            padding: 15px;
-            border-radius: 14px;
+            padding: 12px;
+            border-radius: 10px;
             font-weight: 900;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 12px;
-            letter-spacing: 1px;
-            transition: all 0.2s;
+            transition: 0.2s;
         }
-
-        .copy-btn:hover {
-            background: #e0e0e0;
-            transform: scale(1.02);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Стиль для кнопки после копирования */
-        .copy-btn.success {
-            background: #a020f0 !important;
-            color: #fff !important;
-        }
-
-        .footer {
-            margin-top: auto;
-            padding-top: 50px;
-            font-size: 11px;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .copy-btn.success { background: #a020f0; color: #fff; }
     </style>
 </head>
 <body>
 
     <h1>LH SCRIPTS</h1>
-    <div class="subtitle">Powered by LH RECORDS</div>
+    <div class="subtitle">by LH RECORDS</div>
 
     <div class="container">
         <div class="card">
             <h3>LH FLY V2</h3>
-            <p>Плавный полет с управлением мышкой. Оптимизирован под новые античиты. Арт мой брат!</p>
-            <button class="copy-btn" onclick="copyScript(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua')">Copy Loadstring</button>
+            <p>Плавный полет. Управление через мышку. Лучший выбор для Admin House и Brookhaven.</p>
+            <button class="copy-btn" onclick="copyCode(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua')">Copy Loadstring</button>
         </div>
 
         <div class="card">
-            <h3>SPEED HACK</h3>
-            <p>Мгновенное ускорение персонажа. Бегай быстрее всех на сервере. В разработке...</p>
-            <button class="copy-btn" onclick="copyScript(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/speed.lua')">Copy Loadstring</button>
+            <h3>LH SPEED HUB</h3>
+            <p>Мгновенная скорость. Не сбрасывается при прыжке. Полный контроль персонажа.</p>
+            <button class="copy-btn" onclick="copyCode(this, 'https://raw.githubusercontent.com/alantzs/speedhub/main/speed.lua')">Copy Loadstring</button>
         </div>
     </div>
 
-    <div class="footer">© 2026 AZER | LISHTHATEN STYLE</div>
-
     <script>
-        function copyScript(btn, rawUrl) {
-            // Формируем финальный код
-            const fullCode = 'loadstring(game:HttpGet("' + rawUrl + '"))()';
-            
-            // Создаем временное поле для текста
+        function copyCode(btn, rawUrl) {
+            const loadstring = `loadstring(game:HttpGet("${rawUrl}"))()`;
             const el = document.createElement('textarea');
-            el.value = fullCode;
-            el.setAttribute('readonly', '');
-            el.style.position = 'absolute';
-            el.style.left = '-9999px';
+            el.value = loadstring;
             document.body.appendChild(el);
-            
-            // Выделяем и копируем
-            const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            
-            if (selected) {
-                document.getSelection().removeAllRanges();
-                document.getSelection().addRange(selected);
-            }
 
-            // Эффект на кнопке
             const originalText = btn.innerText;
-            btn.innerText = "COPIED TO CLIPBOARD!";
+            btn.innerText = "COPIED!";
             btn.classList.add('success');
-            
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('success');
             }, 2000);
         }
     </script>
-
 </body>
 </html>
