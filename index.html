@@ -3,104 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LH SCRIPTS</title>
+    <title>LH SCRIPTS HUB | AZER</title>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <style>
         body {
             background: radial-gradient(circle at center, #1e0b35 0%, #07030a 100%);
             color: white;
-            font-family: -apple-system, system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
-        h1 { font-family: 'Dela Gothic One', cursive; font-size: 40px; margin-bottom: 5px; }
-        .subtitle { color: #888; letter-spacing: 5px; text-transform: uppercase; font-size: 10px; margin-bottom: 40px; }
+        h1 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: clamp(32px, 8vw, 48px);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 900px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
             width: 100%;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: left;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #a020f0;
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(160, 32, 240, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .card h3 { font-family: 'Dela Gothic One', cursive; margin: 0 0 10px 0; font-size: 18px; color: #fff; }
-        .card p { font-size: 13px; color: #aaa; margin-bottom: 20px; line-height: 1.4; }
+        .card h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
 
         .copy-btn {
             width: 100%;
             background: #ffffff;
             color: #000;
             border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 800;
+            padding: 15px;
+            border-radius: 14px;
+            font-weight: 900;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 11px;
-            transition: 0.2s;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.2s;
         }
 
-        .copy-btn:active { transform: scale(0.95); }
-        .copy-btn.success { background: #a020f0; color: white; }
+        .copy-btn:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Стиль для кнопки после копирования */
+        .copy-btn.success {
+            background: #a020f0 !important;
+            color: #fff !important;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 50px;
+            font-size: 11px;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
 
-    <h1>LH HUB</h1>
-    <div class="subtitle">by LH RECORDS</div>
+    <h1>LH SCRIPTS</h1>
+    <div class="subtitle">Powered by LH RECORDS</div>
 
     <div class="container">
         <div class="card">
-            <h3>LH FLY</h3>
-            <p>Универсальный полет. Управление мышкой, плавное движение. Версия 2.0</p>
+            <h3>LH FLY V2</h3>
+            <p>Плавный полет с управлением мышкой. Оптимизирован под новые античиты. Арт мой брат!</p>
             <button class="copy-btn" onclick="copyScript(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua')">Copy Loadstring</button>
         </div>
 
-        <div class="card" style="opacity: 0.5;">
-            <h3>SPEED HUB</h3>
-            <p>Скоро будет доступно. Ожидайте обновления в LH RECORDS.</p>
-            <button class="copy-btn">COMING SOON</button>
+        <div class="card">
+            <h3>SPEED HACK</h3>
+            <p>Мгновенное ускорение персонажа. Бегай быстрее всех на сервере. В разработке...</p>
+            <button class="copy-btn" onclick="copyScript(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/speed.lua')">Copy Loadstring</button>
         </div>
     </div>
 
+    <div class="footer">© 2026 AZER | LISHTHATEN STYLE</div>
+
     <script>
         function copyScript(btn, rawUrl) {
-            const code = `loadstring(game:HttpGet("${rawUrl}"))()`;
+            // Формируем финальный код
+            const fullCode = 'loadstring(game:HttpGet("' + rawUrl + '"))()';
             
-            navigator.clipboard.writeText(code).then(() => {
-                const originalText = btn.innerText;
-                btn.innerText = "COPIED!";
-                btn.classList.add('success');
-                
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.classList.remove('success');
-                }, 2000);
-            }).catch(err => {
-                console.error('Ошибка копирования: ', err);
-            });
+            // Создаем временное поле для текста
+            const el = document.createElement('textarea');
+            el.value = fullCode;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            
+            // Выделяем и копируем
+            const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            if (selected) {
+                document.getSelection().removeAllRanges();
+                document.getSelection().addRange(selected);
+            }
+
+            // Эффект на кнопке
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED TO CLIPBOARD!";
+            btn.classList.add('success');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('success');
+            }, 2000);
         }
     </script>
 
