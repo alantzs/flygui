@@ -1,46 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>LH FLY | ROBLOX SCRIPT</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LH SCRIPTS</title>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <style>
         body {
             background: radial-gradient(circle at center, #1e0b35 0%, #07030a 100%);
             color: white;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: -apple-system, system-ui, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 40px 20px;
         }
-        h1 { font-family: 'Dela Gothic One', cursive; font-size: 40px; margin-bottom: 10px; }
-        .label { color: #888; letter-spacing: 5px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; }
-        .copy-box {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
+
+        h1 { font-family: 'Dela Gothic One', cursive; font-size: 40px; margin-bottom: 5px; }
+        .subtitle { color: #888; letter-spacing: 5px; text-transform: uppercase; font-size: 10px; margin-bottom: 40px; }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: left;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #a020f0;
+        }
+
+        .card h3 { font-family: 'Dela Gothic One', cursive; margin: 0 0 10px 0; font-size: 18px; color: #fff; }
+        .card p { font-size: 13px; color: #aaa; margin-bottom: 20px; line-height: 1.4; }
+
+        .copy-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 11px;
+            transition: 0.2s;
         }
-        .copy-box:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
-        code { color: #a020f0; }
+
+        .copy-btn:active { transform: scale(0.95); }
+        .copy-btn.success { background: #a020f0; color: white; }
     </style>
 </head>
 <body>
-    <h1>LH FLY</h1>
-    <div class="label">by LH RECORDS</div>
-    <div class="copy-box" onclick="copy()">
-        <code>Click to copy loadstring</code>
+
+    <h1>LH HUB</h1>
+    <div class="subtitle">by LH RECORDS</div>
+
+    <div class="container">
+        <div class="card">
+            <h3>LH FLY</h3>
+            <p>Универсальный полет. Управление мышкой, плавное движение. Версия 2.0</p>
+            <button class="copy-btn" onclick="copyScript(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua')">Copy Loadstring</button>
+        </div>
+
+        <div class="card" style="opacity: 0.5;">
+            <h3>SPEED HUB</h3>
+            <p>Скоро будет доступно. Ожидайте обновления в LH RECORDS.</p>
+            <button class="copy-btn">COMING SOON</button>
+        </div>
     </div>
 
     <script>
-        function copy() {
-            navigator.clipboard.writeText('loadstring(game:HttpGet("https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua"))()');
-            alert("Скрипт скопирован!");
+        function copyScript(btn, rawUrl) {
+            const code = `loadstring(game:HttpGet("${rawUrl}"))()`;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "COPIED!";
+                btn.classList.add('success');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('success');
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+            });
         }
     </script>
+
 </body>
 </html>
