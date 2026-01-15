@@ -1,155 +1,81 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LH SCRIPTS | ListHaten Records</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<style>
+    .script-container {
+        background: #1a1525;
+        border: 1px solid #7b2ff7;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        position: relative;
+    }
+    
+    pre {
+        color: #00ff88;
+        font-family: 'Consolas', monospace;
+        overflow-x: auto;
+        white-space: pre-wrap;
+    }
+
+    .copy-btn {
+        background: #7b2ff7;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .copy-btn:hover {
+        background: #9d5cff;
+        transform: scale(1.05);
+    }
+
+    .copy-btn.success {
+        background: #00c853;
+    }
+</style>
+
+<div class="script-container">
+    <pre id="scriptText">loadstring(game:HttpGet("https://raw.githubusercontent.com/Azer/LH_EX/main/script.lua"))()</pre>
+    
+    <button class="copy-btn" onclick="copyScript(this)">КОПИРОВАТЬ СКРИПТ</button>
+</div>
+
+<script>
+function copyScript(btn) {
+    // Находим текст внутри тега pre
+    const text = document.getElementById('scriptText').innerText;
+
+    // Современный метод копирования
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            showSuccess(btn);
+        });
+    } else {
+        // Запасной метод для старых браузеров
+        let textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showSuccess(btn);
+        } catch (err) {
+            alert('Ошибка копирования, попробуй вручную');
         }
+        document.body.removeChild(textArea);
+    }
+}
 
-        body {
-            background-color: #080312;
-            color: #ffffff;
-            font-family: 'Dela Gothic One', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        .header-title {
-            font-size: 72px;
-            letter-spacing: 4px;
-            text-shadow: 0px 0px 20px rgba(160, 0, 255, 0.6);
-            margin-bottom: 5px;
-        }
-
-        .sub-title {
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 60px;
-        }
-
-        .scripts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            width: 90%;
-            justify-content: center;
-        }
-
-        .script-card {
-            background: linear-gradient(145deg, #160d2b, #0f081d);
-            border: 2px solid #2a1b4d;
-            border-radius: 30px;
-            padding: 45px 35px;
-            text-align: left;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .script-card:hover {
-            transform: translateY(-15px);
-            border-color: #8a2be2;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(138, 43, 226, 0.2);
-        }
-
-        .script-card h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .script-card p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-family: sans-serif; /* Для лучшей читаемости описания */
-        }
-
-        .copy-button {
-            background-color: #ffffff;
-            color: #000000;
-            border: none;
-            width: 100%;
-            padding: 18px;
-            border-radius: 15px;
-            font-family: 'Dela Gothic One', sans-serif;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .copy-button:hover {
-            background-color: #cc00ff;
-            color: #fff;
-            transform: scale(1.02);
-        }
-
-        /* Декор для стиля */
-        .card-bg-icon {
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            font-size: 100px;
-            opacity: 0.05;
-            transform: rotate(-20deg);
-        }
-
-    </style>
-</head>
-<body>
-
-    <h1 class="header-title">LH SCRIPTS</h1>
-    <p class="sub-title">by list hatten records</p>
-
-    <div class="scripts-grid">
-        <div class="script-card">
-            <h2>LH FLY V2</h2>
-            <p>Продвинутый скрипт на полет. Плавная камера, высокая скорость и обход базовых античитов. Идеально для хаоса в лобби.</p>
-            <button class="copy-button" onclick="copyScript('fly')">COPY LOADSTRING</button>
-            <div class="card-bg-icon">✈</div>
-        </div>
-
-        <div class="script-card">
-            <h2>LH SPEED HUB</h2>
-            <p>Твой персонаж станет быстрее звука. Регулируемая скорость (WalkSpeed) без вылетов и фризов персонажа.</p>
-            <button class="copy-button" onclick="copyScript('speed')">COPY LOADSTRING</button>
-            <div class="card-bg-icon">⚡</div>
-        </div>
-
-        <div class="script-card">
-            <h2>LH FTAP [NEW]</h2>
-            <p>Эксклюзив для Fling Things and People. Anti-Fling, Max FOV и быстрый захват предметов. Твой козырь в игре.</p>
-            <button class="copy-button" onclick="copyScript('ftap')">COPY LOADSTRING</button>
-            <div class="card-bg-icon">☺</div>
-        </div>
-    </div>
-
-    <script>
-        function copyScript(type) {
-            let scripts = {
-                'fly': 'loadstring(game:HttpGet("https://lhscripts.ignorelist.com/fly"))()',
-                'speed': 'loadstring(game:HttpGet("https://lhscripts.ignorelist.com/speed"))()',
-                'ftap': 'loadstring(game:HttpGet("https://lhscripts.ignorelist.com/get"))()'
-            };
-            
-            navigator.clipboard.writeText(scripts[type]).then(() => {
-                alert("Скрипт " + type.toUpperCase() + " скопирован, Азер!");
-            });
-        }
-    </script>
-
-</body>
-</html>
+function showSuccess(btn) {
+    const originalText = btn.innerText;
+    btn.innerText = "СКОПИРОВАНО! ✅";
+    btn.classList.add('success');
+    
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove('success');
+    }, 2000);
+}
+</script>
