@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>LH EX | DOWNLOAD</title>
+    <style>
+        body {
+            background-color: #0f0a19;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        .container {
+            background: #1a1525;
+            border: 2px solid #7b2ff7;
+            border-radius: 15px;
+            padding: 30px;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(123, 47, 247, 0.3);
+        }
+        h1 { color: #b464ff; margin-bottom: 10px; }
+        .download-btn {
+            background: #7b2ff7;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 20px 0;
+            transition: 0.3s;
+        }
+        .download-btn:hover { background: #9d5cff; transform: scale(1.05); }
+        
+        .code-box {
+            background: #000;
+            color: #00ff88;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            text-align: left;
+            margin: 20px 0;
+            border-left: 4px solid #7b2ff7;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            background: #321e50;
+            border: 1px solid #7b2ff7;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>LH EXECUTOR SYSTEM</h1>
+        <p>Версия: 1.1 | Статус: <span style="color: lime;">WORK</span></p>
+        
+        <a href="ССЫЛКА_НА_ТВОЙ_ZIP_С_ГИТХАБА" class="download-btn">СКАЧАТЬ LH_EX.EXE</a>
+
+        <div class="code-box" id="scriptCode">
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Azer/LH_EX/main/script.lua"))()
+        </div>
+        
+        <button class="copy-btn" onclick="copyText()">КОПИРОВАТЬ LOADSTRING</button>
+    </div>
+
+    <script>
+        function copyText() {
+            const text = document.getElementById('scriptCode').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Скопировано! Вставь это в лаунчер.");
+        }
+    </script>
+</body>
+</html>
