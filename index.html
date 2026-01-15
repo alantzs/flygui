@@ -1,81 +1,125 @@
-<style>
-    .script-container {
-        background: #1a1525;
-        border: 1px solid #7b2ff7;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 20px 0;
-        position: relative;
-    }
-    
-    pre {
-        color: #00ff88;
-        font-family: 'Consolas', monospace;
-        overflow-x: auto;
-        white-space: pre-wrap;
-    }
-
-    .copy-btn {
-        background: #7b2ff7;
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .copy-btn:hover {
-        background: #9d5cff;
-        transform: scale(1.05);
-    }
-
-    .copy-btn.success {
-        background: #00c853;
-    }
-</style>
-
-<div class="script-container">
-    <pre id="scriptText">loadstring(game:HttpGet("https://raw.githubusercontent.com/Azer/LH_EX/main/script.lua"))()</pre>
-    
-    <button class="copy-btn" onclick="copyScript(this)">КОПИРОВАТЬ СКРИПТ</button>
-</div>
-
-<script>
-function copyScript(btn) {
-    // Находим текст внутри тега pre
-    const text = document.getElementById('scriptText').innerText;
-
-    // Современный метод копирования
-    if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(() => {
-            showSuccess(btn);
-        });
-    } else {
-        // Запасной метод для старых браузеров
-        let textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showSuccess(btn);
-        } catch (err) {
-            alert('Ошибка копирования, попробуй вручную');
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LH SCRIPTS - Магазин скриптов</title>
+    <style>
+        /* ТВОЙ СТИЛЬ: Темный неон */
+        body {
+            background-color: #0d0d12;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        document.body.removeChild(textArea);
-    }
-}
 
-function showSuccess(btn) {
-    const originalText = btn.innerText;
-    btn.innerText = "СКОПИРОВАНО! ✅";
-    btn.classList.add('success');
-    
-    setTimeout(() => {
-        btn.innerText = originalText;
-        btn.classList.remove('success');
-    }, 2000);
-}
-</script>
+        h1 { color: #8a2be2; text-shadow: 0 0 10px #8a2be2; }
+
+        /* Сетка карточек */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Карточка скрипта (как у тебя была) */
+        .card {
+            background: #16161e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: #8a2be2;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .card h3 { margin-top: 0; color: #fff; }
+
+        /* Скрытый текст скрипта */
+        .script-text { display: none; }
+
+        /* КНОПКА КОПИРОВАНИЯ (Теперь рабочая!) */
+        .copy-btn {
+            background: #8a2be2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .copy-btn.active { background: #00ff88; color: #000; }
+    </style>
+</head>
+<body>
+
+    <h1>LH SCRIPTS</h1>
+    <p>Выбирай скрипт и вставляй в LH EX</p>
+
+    <div class="container">
+        
+        <div class="card">
+            <h3>FLY SCRIPT</h3>
+            <p>Летай по всей карте без бана</p>
+            <span class="script-text">loadstring(game:HttpGet("https://raw.githubusercontent.com/Azer/scripts/main/fly.lua"))()</span>
+            <button class="copy-btn" onclick="copyMe(this)">КОПИРОВАТЬ</button>
+        </div>
+
+        <div class="card">
+            <h3>SPEED HUB</h3>
+            <p>Очень быстрый бег (x100)</p>
+            <span class="script-text">game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100</span>
+            <button class="copy-btn" onclick="copyMe(this)">КОПИРОВАТЬ</button>
+        </div>
+
+        <div class="card" style="border-color: gold;">
+            <h3 style="color: gold;">LH EXECUTOR</h3>
+            <p>Скачать сам лаунчер (.EXE)</p>
+            <a href="https://github.com/ТВОЙ_НИК/LH_EX/releases" style="text-decoration:none;">
+                <button class="copy-btn" style="background: gold; color: black;">ПЕРЕЙТИ К СКАЧИВАНИЮ</button>
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function copyMe(btn) {
+            // Находим текст скрипта, который лежит в той же карточке, что и кнопка
+            const script = btn.parentElement.querySelector('.script-text').innerText;
+            
+            // Магия копирования
+            const el = document.createElement('textarea');
+            el.value = script;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            // Визуальный эффект
+            const originalText = btn.innerText;
+            btn.innerText = "ГОТОВО! ✅";
+            btn.classList.add('active');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('active');
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
