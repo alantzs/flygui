@@ -2,97 +2,64 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LH SCRIPTS HUB</title>
+    <title>LH SCRIPTS | ListHaten</title>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <style>
         body {
-            background: radial-gradient(circle at center, #1e0b35 0%, #07030a 100%);
+            background-color: #0d001a;
             color: white;
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
+            font-family: 'Dela Gothic One', cursive;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
-        h1 { font-family: 'Dela Gothic One', cursive; font-size: clamp(30px, 8vw, 50px); margin: 0; color: #fff; }
-        .subtitle { font-size: 10px; color: #777; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; }
-        
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            width: 100%;
+            text-align: center;
+            border: 5px solid #4d0099;
+            padding: 40px;
+            background: #1a0033;
+            box-shadow: 0 0 20px #4d0099;
         }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); border-color: #a020f0; background: rgba(255, 255, 255, 0.06); }
-        
-        .card h3 { font-family: 'Dela Gothic One', cursive; margin: 0 0 10px 0; font-size: 18px; }
-        .card p { font-size: 14px; color: #aaa; margin-bottom: 20px; line-height: 1.5; }
-        
-        .copy-btn {
-            width: 100%;
-            background: #fff;
-            color: #000;
+        h1 { font-size: 50px; color: #cc00ff; text-shadow: 3px 3px #000; }
+        .btn {
+            background: #00ff00;
+            color: black;
+            padding: 15px 30px;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 900;
             cursor: pointer;
-            text-transform: uppercase;
-            font-size: 12px;
-            transition: 0.2s;
+            font-family: 'Dela Gothic One';
+            font-size: 20px;
+            margin-top: 20px;
         }
-        .copy-btn.success { background: #a020f0; color: #fff; }
+        .btn:hover { background: #ff0000; }
+        .code-box {
+            background: #000;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #00ff00;
+            border: 1px dashed #4d0099;
+        }
     </style>
 </head>
 <body>
-
-    <h1>LH SCRIPTS</h1>
-    <div class="subtitle">by LH RECORDS</div>
-
     <div class="container">
-        <div class="card">
-            <h3>LH FLY V2</h3>
-            <p>Плавный полет. Управление через мышку. Лучший выбор для Admin House и Brookhaven.</p>
-            <button class="copy-btn" onclick="copyCode(this, 'https://raw.githubusercontent.com/alantzs/flygui/main/fly.lua')">Copy Loadstring</button>
+        <h1>LH SCRIPTS</h1>
+        <p>FOR FTAP AND MINECRAFT MODS</p>
+        <div class="code-box" id="scriptCode">
+            loadstring(game:HttpGet("https://lhscripts.ignorelist.com/get"))()
         </div>
-
-        <div class="card">
-            <h3>LH SPEED HUB</h3>
-            <p>Мгновенная скорость. Не сбрасывается при прыжке. Полный контроль персонажа.</p>
-            <button class="copy-btn" onclick="copyCode(this, 'https://raw.githubusercontent.com/alantzs/speedhub/main/speed.lua')">Copy Loadstring</button>
-        </div>
+        <button class="btn" onclick="copyCode()">КОПИРОВАТЬ СКРИПТ</button>
     </div>
 
     <script>
-        function copyCode(btn, rawUrl) {
-            const loadstring = `loadstring(game:HttpGet("${rawUrl}"))()`;
-            const el = document.createElement('textarea');
-            el.value = loadstring;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-
-            const originalText = btn.innerText;
-            btn.innerText = "COPIED!";
-            btn.classList.add('success');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('success');
-            }, 2000);
+        function copyCode() {
+            var text = document.getElementById("scriptCode").innerText;
+            navigator.clipboard.writeText(text);
+            alert("Скрипт скопирован, Азер! Вставляй в экзекутор.");
         }
     </script>
 </body>
